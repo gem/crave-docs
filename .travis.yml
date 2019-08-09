@@ -13,5 +13,5 @@ script:
 after_success:
 - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
     rsync -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' -ax
-    --delete docs/build/html/ docs@ci.openquake.org:/var/www/docs.openquake.org/crave/;
+    --delete build/html/ docs@ci.openquake.org:/var/www/docs.openquake.org/crave/;
   fi
