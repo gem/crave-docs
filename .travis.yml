@@ -10,6 +10,7 @@ cache:
   - wheels  
 
 stages:
+ - build
  - name: deploy
    if: branch = master
 
