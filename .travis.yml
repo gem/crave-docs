@@ -1,0 +1,17 @@
+language: python
+dist: xenial
+python:
+- '3.7'
+cache:
+  pip: true
+before_script:
+- openssl aes-256-cbc -K $encrypted_0022eb92da20_key -iv $encrypted_0022eb92da20_iv
+ -in .deploy_rsa.enc -out ./.deploy_rsa -d
+- chmod 600 .deploy_rsa && eval $(ssh-agent -s) && ssh-add .deploy_rsa
+script:
+- cd docs && make html
+after_success:
+- if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+    rsync -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' -ax
+    --delete docs/build/html/ docs@ci.openquake.org:/var/www/docs.openquake.org/crave/;
+  fi
