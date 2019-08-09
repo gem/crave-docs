@@ -6,7 +6,7 @@ cache:
   pip: true
 install:
 - sudo apt update
-- DEBIAN_FRONTEND=noninteractive sudo apt install -y latexmk texlive-latex-extra dvipng
+- DEBIAN_FRONTEND=noninteractive sudo apt install -y latexmk texlive-full dvipng
 - pip install -r requirements.txt
 before_script:
 - openssl aes-256-cbc -K $encrypted_0022eb92da20_key -iv $encrypted_0022eb92da20_iv
