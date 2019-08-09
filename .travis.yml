@@ -6,8 +6,6 @@ python:
 
 cache:
  pip: true
- directories:
-  - wheels  
 
 stages:
  - build
