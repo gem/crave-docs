@@ -6,7 +6,7 @@ cache:
   pip: true
 stages:
 - build
-- name: deploy
+- deploy
   if: branch = master
 jobs:
   include:
