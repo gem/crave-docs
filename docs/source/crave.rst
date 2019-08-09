@@ -41,7 +41,7 @@ You can have bulleted lists:
 * First
 
   You can use cross references and inline images:
-  * |icon-load-indicators| :ref:`chap-load-indicators`
+  * |icon-load-indicators| :ref:`chap-crave`
 
 * Second
 
