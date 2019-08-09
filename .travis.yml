@@ -11,13 +11,15 @@ stages:
 jobs:
   include:
   - stage: build
+    name: build
     install: pip install sphinx
     script:
     - cd docs && make html
   - stage: deploy
+    name: deploy
     script:
     - openssl aes-256-cbc -K $encrypted_0022eb92da20_key -iv $encrypted_0022eb92da20_iv
       -in .deploy_rsa.enc -out ./.deploy_rsa -d
-      && chmod 600 .deploy_rsa && eval $(ssh-agent -s) && ssh-add .deploy_rsa
-      && rsync -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    - chmod 600 .deploy_rsa && eval $(ssh-agent -s) && ssh-add .deploy_rsa
+    - rsync -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
       -ax --delete docs/build/html/ docs@ci.openquake.org:/var/www/docs.openquake.org/crave/;
